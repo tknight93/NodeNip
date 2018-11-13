@@ -15,7 +15,7 @@ app.get('/', function (req, res) {
 
 app.get('/getLengthData', function(req,res){
     // Use connect method to connect to the server
-    MongoClient.connect(url,  function(err, client) {
+    MongoClient.connect(url,  function(err, client) { 
         if (err){ 
             res.status(500).send({error: 'Database Connect Issue', message: err.message}); 
             return; 

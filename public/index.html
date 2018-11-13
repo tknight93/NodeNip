@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/all.css" rel="stylesheet">
+        <title>Nipple Hair WR Attempt</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <script src="js/jqueryV3.3.1.js"></script>
+        <script async src="js/moment.js"></script>
+        <script async src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+        <script async src="js/index.js"></script>
+        <script async src="js/jquery-ui-1.12.1/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+        <link href="js/jquery-ui-1.12.1/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet">
+        <link href="js/jquery-ui-1.12.1/jquery-ui-1.12.1/jquery-ui.theme.min.css" rel="stylesheet">
+        <link href="js/jquery-ui-1.12.1/jquery-ui-1.12.1/jquery-ui.structure.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6" >
+                    <div class="page-header">
+                        <h1><img id="GuinnesLogo" src="/img/WRAttempt.png" alt="Image not found"> Longest Nipple Hair</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 animated" >
+                    <div id="chartDiv" class="panel panel-default">
+                        <div class="panel-heading"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span> Progress <span id="chartResize" class="glyphicon glyphicon-resize-full" aria-hidden="true"></span> </div>
+                        <div class="panel-body">
+                            <div class="preloader">
+                                <div class="loader"> </div>
+                            </div>
+                            <canvas style="display:none;" id="progress"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" >
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> My Length vs. Current WR</div>
+                        <div class="panel-body">
+                            <div class="preloader">
+                                <div class="loader"> </div>
+                            </div>
+                            <div id="currentLengthBar" class="progress" style="display:none">
+                                <div id="currentLengthBarVal" class="progress-bar progress-bar-striped progress-bar-animated active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="170" ><span id="myCurrent"><img src="/img/head.png" alt="Image not found"></span></div>
+                                <span id="progressBarWR"><img src="/img/GWR.png" alt="Image not found">170mm</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" >
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Stats</div>
+                        <div id="Estimates" class="panel-body">
+                            <div class="preloader">
+                                <div class="loader"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

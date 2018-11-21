@@ -1,37 +1,33 @@
 var myChart;
 $(document).ready(function(){
     $.ajax( "/getLengthData" )
-    .done(function(data) {
-        var mappedData = $.map(data, function(n){
-            return {t: n.t, y:n.length };
-        });
-        setGraph(mappedData);
-        setProgressBar(data[data.length-1].length);
-        setEstimates(data);
-    })
-    .fail(function(e) {
-        console.log(e);
-        var message = e.responseJSON.error;  
-        $(".panel-body").html(message);
-    })  
+        .done(function(data) {
+            var mappedData = $.map(data, function(n){
+                return {t: n.t, y:n.length };
+            });
+            setGraph(mappedData);
+            setProgressBar(data[data.length-1].length);
+            setEstimates(data);
+        })
+        .fail(function(e) {
+            console.log(e);
+            $(".panel-body").html(e.responseJSON.error);
+        }); 
     
     $('#chartResize').on('click',function(){
         if($(this).hasClass("glyphicon-resize-full")){
-            $(this).removeClass("glyphicon-resize-full");
-            $(this).addClass("glyphicon-resize-small");
-            $(this).parent().parent().parent().removeClass("col-md-6");
-            $(this).parent().parent().parent().addClass("col-md-11");
-            $(this).parent().parent().parent().addClass("col-centered");
+            $(this).removeClass("glyphicon-resize-full")
+                .addClass("glyphicon-resize-small")
+                .parent().parent().parent().removeClass("col-md-6")
+                .addClass("col-md-12");      
         }
         else{
-            $(this).removeClass("glyphicon-resize-small");
-            $(this).addClass("glyphicon-resize-full");
-            $(this).parent().parent().parent().removeClass("col-md-11");
-            $(this).parent().parent().parent().addClass("col-md-6");
-            $(this).parent().parent().parent().removeClass("col-centered");
-
+            $(this).removeClass("glyphicon-resize-small")
+                .addClass("glyphicon-resize-full")
+                .parent().parent().parent().removeClass("col-md-12")
+                .addClass("col-md-6");   
         }
-    })
+    });
 });
 
 
@@ -39,6 +35,8 @@ function setGraph(data){
     $("#progress").show();
     $(".preloader").hide();
     Chart.defaults.global.defaultFontColor = '#ffffff';
+    const width = (window.innerWidth > 0) ? window.innerWidth : screen.width;  
+    Chart.defaults.global.defaultFontSize = width > 600 ?  20 : 12; 
     Chart.defaults.global.defaultFontFamily = 'Montserrat, sans-serif';
     var ctx = document.getElementById("progress").getContext('2d');
     myChart = new Chart(ctx, {
@@ -78,27 +76,27 @@ function setGraph(data){
 function setProgressBar(currentLength){
     $("#currentLength").show();   
     $("#currentLengthBar").css({display:"block"});
-    $("#currentLengthBarVal").prop("aria-valuenow",currentLength);
-    $("#currentLengthBarVal").css({width: (currentLength/170)*100+"%" });
-    $("#myCurrent").after(currentLength.toFixed(1)+"mm");
+    $("#currentLengthBarVal").prop("aria-valuenow",currentLength)
+        .css({width: `${(currentLength/170)*100}%`});
+    $("#myCurrent").after(`${currentLength.toFixed(1)}mm`);
 }
 
 function setEstimates(data){
-    var current = data[data.length-1];
-    var starting = data[0];  
-    var daysTotal = Math.floor( moment(current.t).diff(moment(starting.t)) / (1000*60*60*24)); 
-    var growthTotal = current.length - starting.length;
-    var growthRate = growthTotal / daysTotal
-    var estDaysRem = Math.floor((170 -  current.length) / growthRate);
-    var endDate = moment().add(estDaysRem, 'd');
+    const current = data[data.length-1];
+    const starting = data[0];  
+    const daysTotal = Math.floor( moment(current.t).diff(moment(starting.t)) / (1000*60*60*24)); 
+    const growthTotal = current.length - starting.length;
+    const growthRate = growthTotal / daysTotal;
+    const estDaysRem = Math.floor((170 -  current.length) / growthRate);
+    const endDate = moment().add(estDaysRem, 'd');
    
     addStat("Days Recorded", daysTotal);
-    addStat("Growth", growthTotal + "mm");
-    addStat("Rate", growthRate.toFixed(1) + "mm per day")
-    addStat("Estimated Days Remaining", estDaysRem)
-    addStat("Estimated End Date", endDate.format("DD MMM YYYY"))
+    addStat("Growth",`${growthTotal}mm`);
+    addStat("Rate", `${growthRate.toFixed(1)}mm per day`);
+    addStat("Estimated Days Remaining", estDaysRem);
+    addStat("Estimated End Date", endDate.format("DD MMM YYYY"));
 }
 
 function addStat(title, value){
-    $('#Estimates').append('<span><b>'+title+': </b>'+value+'</span>')
+    $('#Estimates').append(`<span><b>${title}: </b>${value}</span>`);
 }

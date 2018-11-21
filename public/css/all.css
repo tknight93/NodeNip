@@ -99,15 +99,26 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     font-family: Montserrat; 
     src: url('../fonts/Montserrat/Montserrat-Regular.ttf'); 
 }
+body{
+    font-size:20px;
+}
+@media screen and (max-width: 600px) {
+    body{
+        font-size:12px;
+    }
+}
+
+
 body, #currentLengthBar, #Estimates span {
     background-color: #0C1821;
     font-family: 'Montserrat', sans-serif;
 }
+
 #currentLengthBar, #currentLengthBar span{
-        height:95px;
-        line-height: 95px;
-        margin-bottom: 0px;
-    }
+    height:95px;
+    line-height: 95px;
+    margin-bottom: 0px;
+}
 @media screen and (max-width: 600px) {
     #currentLengthBar, #currentLengthBar span{
         height:50px;
@@ -115,6 +126,7 @@ body, #currentLengthBar, #Estimates span {
         margin-bottom: 0px;
     }
 }
+
 #progressBarWR > img, #myCurrent > img{
     width: 70px;
     margin: 5px;
@@ -152,10 +164,10 @@ body, #currentLengthBar, #Estimates span {
     cursor: pointer;
 }
 .animated{
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    -webkit-transition: width 0.5s ease;
+    -moz-transition: width 0.5s ease;
+    -o-transition: width 0.5s ease;
+    transition: width 0.5s ease;
 }
 
 #progress{
@@ -176,7 +188,7 @@ h1{
 }
 
 #GuinnesLogo{
-    width:90px;
+    width:175px;
 }
 
 .panel-default, .panel-heading, .panel-default > .panel-heading {
@@ -266,7 +278,7 @@ h1{
         display: none;
     }
     #GuinnesLogo{
-        width:50px;
+        width:90px;
     }
     h1{
         font-size: 20px
